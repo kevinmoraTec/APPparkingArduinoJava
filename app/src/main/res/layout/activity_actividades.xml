@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Actividades"
+    android:background="@color/colorAccent">
+
+    <TextView
+        android:id="@+id/titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BIENVENIDO"
+        android:textAlignment="center"
+        android:textColor="#9C27B0"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        tools:layout_editor_absoluteY="52dp"
+        tools:ignore="MissingConstraints"
+        android:gravity="center_horizontal" />
+
+    <LinearLayout
+        android:layout_width="282dp"
+        android:layout_height="181dp"
+        android:background="@drawable/border"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.541"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.087"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/placaVehiculoET"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_gravity="center"
+            android:paddingBottom="10dp"
+            android:hint="Placa"
+            app:srcCompat="@drawable/onoff" />
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="25dp"></Space>
+
+        <EditText
+            android:paddingTop="10dp"
+            android:id="@+id/nombreUsuarioET"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_gravity="center"
+            android:paddingStart="10dp"
+            android:hint="Nombre"
+            android:textColor="@color/black"
+            android:paddingLeft="10dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="284dp"
+        android:layout_height="174dp"
+        android:layout_marginTop="40dp"
+        android:background="@null"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titulo"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/parquaderoactivity"
+            android:layout_width="238dp"
+            android:layout_height="102dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/parkeadero"
+            />
+
+        <TextView
+            android:id="@+id/operacionesParquederoTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingStart="10dp"
+            android:text="OPERACIONES PARQUEDERO"
+            android:textColor="#9C27B0"
+            android:paddingLeft="10dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="282dp"
+        android:layout_height="181dp"
+
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.541"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.91"
+        android:gravity="center">
+
+        <ImageView
+            android:background="@color/ic_launcher_background"
+            android:id="@+id/iconoInformacion"
+            android:layout_width="130dp"
+            android:layout_height="75dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/iconoinformacion"
+            />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

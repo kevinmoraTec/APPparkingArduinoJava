@@ -1,4 +1,4 @@
-package com.example.arduino_led_bluetooth;
+package com.example.proyectobluetooh;
 
 import org.junit.Test;
 

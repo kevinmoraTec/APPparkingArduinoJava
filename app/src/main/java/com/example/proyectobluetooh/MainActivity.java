@@ -76,23 +76,23 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btnApagarTodoLuces.setOnClickListener(v -> {
-            MyConexionBT.write("2");
+            MyConexionBT.write("a");
         });
 
         btnSitio1.setOnClickListener(v -> {
-            MyConexionBT.write("3");
+            MyConexionBT.write("2");
         });
 
         btnSitio2.setOnClickListener(v -> {
-            MyConexionBT.write("4");
+            MyConexionBT.write("3");
         });
 
         btnSitio3.setOnClickListener(v -> {
-            MyConexionBT.write("5");
+            MyConexionBT.write("4");
         });
 
         btnSitio4.setOnClickListener(v -> {
-            MyConexionBT.write("6");
+            MyConexionBT.write("5");
         });
 
 //        imageViewPersona.setOnClickListener(v -> {

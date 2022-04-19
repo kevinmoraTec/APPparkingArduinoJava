@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Piano Touch</string>
+
+    <string name="placas">Seleccion una placa </string>
+    <string name="titlespiner">Selecciona un parqueadero</string>
+    <string name="signin">OK</string>
+    <string name="cancel">CANCEL</string>
+
+    <string-array name="arrayPlacas">
+        <item>Parqueadero 1</item>
+        <item>Parqueadero 2</item>
+        <item>Parqueadero 3</item>
+        <item>Parqueadero 4</item>
+        <item>Parqueadero 5</item>
+    </string-array>
 </resources>

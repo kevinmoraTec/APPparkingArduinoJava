@@ -4,158 +4,209 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/madera"
+    android:background="@drawable/temados"
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="352dp"
+        android:layout_height="532dp"
+        android:gravity="center"
         android:orientation="vertical"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="Parking Software"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="30dp"
-
-            android:textStyle="bold"
-            android:gravity="center_horizontal" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.656">
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
+            android:elevation="2dp"
+            android:fontFamily="@font/messiri"
+            android:gravity="center_horizontal"
             android:text="Control Luces"
-            android:textColor="@color/black"
-            android:textSize="20dp"
+            android:textAlignment="center"
+            android:textColor="#939191"
+            android:textSize="30dp"
             android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/contornodos"
+            android:elevation="5dp"
             android:orientation="horizontal"
             android:padding="10dp">
+
 
             <Button
                 android:id="@+id/btnEncenderTodoLuces"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_height="60dp"
+                android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/celeste"
+                android:backgroundTint="#1C51DC"
+                android:drawableLeft="@drawable/ic_ence"
+                android:fontFamily="@font/flixnormal"
                 android:text="Encender"
-                android:textAllCaps="false" />
+                android:textColor="#FFFFFF" />
 
             <Button
                 android:id="@+id/btnApagarTodoLuces"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/celeste"
+                android:backgroundTint="#1C51DC"
+                android:drawableLeft="@drawable/ic_apa"
+                android:fontFamily="@font/flixnormal"
                 android:text="Apagar"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:elevation="2dp"
+            android:fontFamily="@font/messiri"
+            android:gravity="center_horizontal"
             android:text="Estacionamiento"
-            android:textColor="@color/black"
-            android:textSize="20dp"
+            android:textAlignment="center"
+            android:textColor="#939191"
+            android:textSize="30dp"
             android:textStyle="bold" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="334dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:background="@drawable/entradados"
+            android:elevation="5dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                <Button
+                    android:id="@+id/btnSitio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#FFF"
+                    android:drawableLeft="@drawable/ic_baseline_directions_car_24"
+                    android:fontFamily="@font/flixnormal"
+                    android:text="Sitio 1"
+                    android:textColor="#939191" />
 
-                    <Button
-                        android:id="@+id/btnSitio1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1"
-                        android:backgroundTint="@color/celeste"
-                        android:text="Sitio 1"
-                        android:textAllCaps="false" />
+                <Button
+                    android:id="@+id/btnSitio2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#FFFFFF"
+                    android:drawableLeft="@drawable/ic_baseline_directions_car_24"
+                    android:fontFamily="@font/flixnormal"
+                    android:text="Sitio 2"
+                    android:textColor="#939191" />
+            </LinearLayout>
 
-                    <Button
-                        android:id="@+id/btnSitio2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1"
-                        android:backgroundTint="@color/celeste"
-                        android:text="Sitio 2"
-                        android:textAllCaps="false" />
-                </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                <Button
+                    android:id="@+id/btnSitio3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#FFFFFF"
+                    android:drawableLeft="@drawable/ic_baseline_directions_car_24"
+                    android:fontFamily="@font/flixnormal"
+                    android:text="Sitio 3"
+                    android:textColor="#939191" />
 
-                    <Button
-                        android:id="@+id/btnSitio3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1"
-                        android:backgroundTint="@color/celeste"
-                        android:text="Sitio 3"
-                        android:textAllCaps="false" />
+                <Button
+                    android:id="@+id/btnSitio4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#FFFFFF"
+                    android:drawableLeft="@drawable/ic_baseline_directions_car_24"
+                    android:fontFamily="@font/flixnormal"
+                    android:text="Sitio 4"
+                    android:textColor="#939191" />
+            </LinearLayout>
 
-                    <Button
-                        android:id="@+id/btnSitio4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1"
-                        android:backgroundTint="@color/celeste"
-                        android:text="Sitio 4"
-                        android:textAllCaps="false" />
-                </LinearLayout>
+            <LinearLayout
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnSitio5"
+                    android:layout_width="155dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#FFFFFF"
+                    android:drawableLeft="@drawable/ic_baseline_directions_car_24"
+                    android:fontFamily="@font/flixnormal"
+                    android:text="Sitio 5"
+                    android:textColor="#939191" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/listar"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#939191"
+                    android:drawableLeft="@drawable/ic_portapapeles"
+                    android:fontFamily="@font/flixnormal"
+                    android:textColor="#FFF" />
+
+                <Button
+                    android:id="@+id/cobrar"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#939191"
+                    android:drawableLeft="@drawable/ic_metodo_de_pago"
+                    android:fontFamily="@font/flixnormal"
+                    android:text="Apagar Todo"
+                    android:textColor="#fff" />
             </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp">
-
-            <ImageView
-                android:id="@+id/imageViewPersona"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                tools:srcCompat="@tools:sample/avatars" />
-        </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

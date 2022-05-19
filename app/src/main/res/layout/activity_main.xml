@@ -193,7 +193,7 @@
                     android:fontFamily="@font/flixnormal"
                     android:textColor="#FFF" />
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/cobrar"
                     android:layout_width="100dp"
                     android:layout_height="50dp"

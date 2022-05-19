@@ -1,6 +1,7 @@
 package com.example.proyectobluetooh;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -22,6 +23,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +34,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.button.MaterialButton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,12 +42,14 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.BreakIterator;
 import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnEncenderTodoLuces,btnApagarTodoLuces,btnSitio1,btnSitio2,btnSitio3,btnSitio4,btnSitio5,listar,cobrar;
-    private TextView lugarparkeadero;
+    private Button btnEncenderTodoLuces,btnApagarTodoLuces,btnSitio1,btnSitio2,btnSitio3,btnSitio4,btnSitio5,listar;
+    MaterialButton  cobrar;
+    private EditText placaVehiculo;
     Handler bluetoothIn;
     final int handlerState = 0;
     private BluetoothAdapter btAdapter = null;
@@ -59,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
     private String url="http://"+ip+":4000/cuentas";
     private RequestQueue requestQueue;
     private boolean presionado = false;
+    String placaIngresada ="";
+
+
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -85,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         btnSitio4 = findViewById(R.id.btnSitio4);
         btnSitio5 = findViewById(R.id.btnSitio5);
         cobrar = findViewById(R.id.cobrar);
-        lugarparkeadero=findViewById(R.id.lugarparkeadero);
+        placaVehiculo= (EditText) findViewById(R.id.placaIngresada);
 
         //imageViewPersona = findViewById(R.id.imageViewPersona);
 
@@ -105,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btnSitio1.setOnClickListener(v -> {
-            MyConexionBT.write("6");
+            MyConexionBT.write("");
         });
 
 //        btnSitio1.setOnTouchListener(new View.OnTouchListener() {
@@ -145,12 +153,14 @@ public class MainActivity extends AppCompatActivity {
             MyConexionBT.write("5");
         });
 
-        cobrar.setOnClickListener(v -> {
+        cobrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-            MyConexionBT.write("z");
-            //onCreateDialogCobrar(2);
-            //traerSolicitudes();
+                onCreateDialogCobrar();
+               // new PagoActivity().show(getSupportFragmentManager(), "PagoActivity");
 
+            }
         });
 
 
@@ -295,7 +305,7 @@ public class MainActivity extends AppCompatActivity {
                             String horaIngreso=jsonObject.getString("horaIngreso").toString();
                             //Toast.makeText(Inicio.this,"-> "+startDireccion,Toast.LENGTH_SHORT).show();
                             // Toast.makeText(Inicio.this,"-> "+jsonObject.getString("FinalDirection").toString(),Toast.LENGTH_SHORT).show();
-                            onCreateDialogCobrar(idClientes);
+
                             //int idRequest,Double latitud,Double longitud,String nameUser,String referencia
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -316,20 +326,34 @@ public class MainActivity extends AppCompatActivity {
         );
         Volley.newRequestQueue(this).add(request);
     }
-    public void onCreateDialogCobrar(int id2) {
+    public void onCreateDialogCobrar() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         // Get the layout inflater
         LayoutInflater inflater = this.getLayoutInflater();
-
+        builder.setTitle(R.string.tituloAletaIngresarVehiculo);
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
-        builder.setView(inflater.inflate(R.layout.dialog_signin, null))
+        //BreakIterator dialog_signin;
+        View dialogView= inflater.inflate(R.layout.dialog_signin,null);
+        builder.setView(dialogView);
+        final EditText placaVehiculoIngresada = (EditText) dialogView.findViewById(R.id.placaIngresada);
+        //final EditText placaVehiculoIngresada = (EditText) dialogView.findViewById(R.id.placaIngresada);
+        //final EditText placaVehiculoIngresada = (EditText) dialogView.findViewById(R.id.placaIngresada);
+
+        // >>>> here
+
+
+        //builder.setView(inflater.inflate(R.layout.dialog_signin, null));
+
+
                 // Add action buttons
-                .setPositiveButton(R.string.signin, new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(R.string.signin, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        lugarparkeadero.setText(id2);
+
+                        Toast.makeText(MainActivity.this,"-> "+placaVehiculoIngresada.getText().toString(),Toast.LENGTH_SHORT).show();
                     }
+
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
@@ -339,4 +363,5 @@ public class MainActivity extends AppCompatActivity {
         Dialog dialog= builder.create();
            dialog.show();
     }
+
 }

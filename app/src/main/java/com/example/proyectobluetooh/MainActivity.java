@@ -1,6 +1,7 @@
 package com.example.proyectobluetooh;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
 import android.annotation.SuppressLint;
@@ -28,6 +29,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -43,6 +45,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.BreakIterator;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
@@ -60,11 +64,18 @@ public class MainActivity extends AppCompatActivity {
     private static final UUID BITMODULEUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     //String para la dirección MAC
     private static String address = null;
-    String ip ="192.168.190.237";
-    private String url="http://"+ip+":4000/cuentas";
+    String url;
     private RequestQueue requestQueue;
     private boolean presionado = false;
     String placaIngresada ="";
+    String nombreConductor="";
+    String lugarParqueadero="";
+    String ip ="192.168.1.3";
+    private String urlDriveraddActivo="http://"+ip+":4000/clientes";
+
+    int contadorClick=0;
+
+
 
 
 
@@ -84,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
-
+        hideSystemUI();
         btnEncenderTodoLuces = findViewById(R.id.btnEncenderTodoLuces);
         btnApagarTodoLuces = findViewById(R.id.btnApagarTodoLuces);
         btnSitio1 = findViewById(R.id.btnSitio1);
@@ -104,60 +115,55 @@ public class MainActivity extends AppCompatActivity {
 
 
         btnEncenderTodoLuces.setOnClickListener(v -> {
+
             Toast.makeText(getBaseContext(), "Enviando 1", Toast.LENGTH_LONG).show();
-            MyConexionBT.write("1");
+            MyConexionBT.write("x");
+
+
         });
 
         btnApagarTodoLuces.setOnClickListener(v -> {
-            MyConexionBT.write("a");
+            MyConexionBT.write("y");
         });
 
         btnSitio1.setOnClickListener(v -> {
-            MyConexionBT.write("");
+            //MyConexionBT.write("1");
+
+            contadorClick++;
+            if (contadorClick == 1){
+                onCreateDialogCobrar();
+                cambiarColorBotonesParkeadero(btnSitio1,R.color.ParqueaderoOcupado);
+            }else if (contadorClick == 2){
+                Toast.makeText(MainActivity.this,"-> "+contadorClick,Toast.LENGTH_SHORT).show();
+                cambiarColorBotonesParkeadero(btnSitio1,R.color.white);
+                contadorClick =0;
+            }
+
         });
 
-//        btnSitio1.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                switch (event.getAction()) {
-//                    case MotionEvent.ACTION_DOWN:
-//                        if (!presionado) {
-//                            presionado = true;
-//                            //AsyncTask que ejecuta Tarea.
-//                            MyConexionBT.write("a");
-//                        }
-//                        break;
-//                    case MotionEvent.ACTION_UP:
-//                        presionado = false;
-//                        Log.d("CONTADOR", "Detiene contador");
-//                        break;
-//                }
-//                return true;
-//            }
 //
-//        });
 
         btnSitio2.setOnClickListener(v -> {
-            MyConexionBT.write("2");
+            //MyConexionBT.write("2");
         });
 
         btnSitio3.setOnClickListener(v -> {
-            MyConexionBT.write("3");
+            //MyConexionBT.write("3");
         });
 
         btnSitio4.setOnClickListener(v -> {
-            MyConexionBT.write("4");
+            // MyConexionBT.write("4");
         });
 
         btnSitio5.setOnClickListener(v -> {
-            MyConexionBT.write("5");
+            //MyConexionBT.write("5");
         });
 
         cobrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                onCreateDialogCobrar();
+                MyConexionBT.write("z");
                // new PagoActivity().show(getSupportFragmentManager(), "PagoActivity");
 
             }
@@ -273,6 +279,8 @@ public class MainActivity extends AppCompatActivity {
             hideSystemUI();
         }
     }
+
+    // Metodo para ocultar la barra de inicio y hacer el programa full screm
     private void hideSystemUI() {
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(
@@ -326,6 +334,8 @@ public class MainActivity extends AppCompatActivity {
         );
         Volley.newRequestQueue(this).add(request);
     }
+
+    // Metodo para crear un ventana nueva y asignar los datos del Cliente
     public void onCreateDialogCobrar() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         // Get the layout inflater
@@ -336,9 +346,9 @@ public class MainActivity extends AppCompatActivity {
         //BreakIterator dialog_signin;
         View dialogView= inflater.inflate(R.layout.dialog_signin,null);
         builder.setView(dialogView);
-        final EditText placaVehiculoIngresada = (EditText) dialogView.findViewById(R.id.placaIngresada);
-        //final EditText placaVehiculoIngresada = (EditText) dialogView.findViewById(R.id.placaIngresada);
-        //final EditText placaVehiculoIngresada = (EditText) dialogView.findViewById(R.id.placaIngresada);
+         EditText placaVehiculoIngresada = (EditText) dialogView.findViewById(R.id.placaIngresada);
+         EditText nombreUsuarioET = (EditText) dialogView.findViewById(R.id.nombreUsuarioET);
+         EditText lugarParqueaderoET = (EditText) dialogView.findViewById(R.id.lugarParqueadero);
 
         // >>>> here
 
@@ -352,6 +362,17 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id) {
 
                         Toast.makeText(MainActivity.this,"-> "+placaVehiculoIngresada.getText().toString(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this,">-> "+nombreUsuarioET.getText().toString(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this,">>-> "+lugarParqueaderoET.getText().toString(),Toast.LENGTH_SHORT).show();
+                        String parqueaderoSeleccionado;
+                        parqueaderoSeleccionado=lugarParqueaderoET.getText().toString();
+                        placaIngresada=placaVehiculoIngresada.getText().toString();
+                        nombreConductor=nombreUsuarioET.getText().toString();
+                        lugarParqueadero=parqueaderoSeleccionado;
+
+                        encender_Apagar_Parqueaderos(parqueaderoSeleccionado);
+                        enviarDatosPakingActivos();
+
                     }
 
                 })
@@ -363,5 +384,46 @@ public class MainActivity extends AppCompatActivity {
         Dialog dialog= builder.create();
            dialog.show();
     }
+
+
+    // Metodo para enviar los datos al servidor de Node.js y guardarlos en la BD
+    public void enviarDatosPakingActivos(){
+        //Toast.makeText(Actividades.this,"Heyy >>"+placa+" : "+name,Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this,"Heyy >>",Toast.LENGTH_SHORT).show();
+
+
+        StringRequest postRequest = new StringRequest(Request.Method.POST, urlDriveraddActivo, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                ////////////
+                ///////////  Respusta del servidor///////////
+                ////////////
+                Toast.makeText(MainActivity.this,"[]"+response.toString(),Toast.LENGTH_SHORT).show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //Log.e("Error Volelly",error.getMessage());
+            }
+        }){
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<>();
+                params.put("placa",placaIngresada);
+                params.put("nombre",nombreConductor);
+                params.put("lugar",lugarParqueadero);
+                return params;
+            }
+        };
+        postRequest.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS * 2, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        Volley.newRequestQueue(this).add(postRequest);
+
+    }
+
+   public void encender_Apagar_Parqueaderos(String lugarParqueadero){
+       MyConexionBT.write(lugarParqueadero);
+   }
+   public void cambiarColorBotonesParkeadero(Button boton,int color){
+        boton.setBackgroundColor(ContextCompat.getColor(getBaseContext(),color));
+   }
 
 }

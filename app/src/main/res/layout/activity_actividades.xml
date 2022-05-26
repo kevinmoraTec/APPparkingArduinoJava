@@ -38,7 +38,7 @@
             app:hintTextColor="@color/black">
 
             <EditText
-                android:id="@+id/placaVehiculoET"
+                android:id="@+id/cobroPorHora"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
@@ -47,58 +47,12 @@
                 android:drawablePadding="10dp"
                 android:fontFamily="@font/messiri"
                 android:gravity="bottom"
-                android:hint="Placa"
+                android:hint="Precio por Hora"
+                android:inputType="numberDecimal"
                 android:padding="10dp"
                 android:singleLine="true"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="2dp"
-            android:textColorHint="#939191"
-            app:boxStrokeColor="@color/black"
-            app:counterEnabled="true"
-            app:counterMaxLength="30"
-            app:counterTextColor="@color/white"
-            app:helperText="Requerido"
-            app:helperTextTextColor="@color/white"
-            app:hintTextColor="@color/black">
-
-            <EditText
-                android:id="@+id/nombreUsuarioET"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/entrada"
-                android:drawableLeft="@drawable/entrada_nombre"
-                android:drawablePadding="10dp"
-                android:fontFamily="@font/messiri"
-                android:gravity="bottom"
-                android:hint="Nombre"
-                android:padding="10dp"
-                android:singleLine="true"
-                android:textColor="@color/black" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <EditText
-            android:id="@+id/lugarParqueadero"
-            android:layout_width="281dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/entrada"
-            android:drawablePadding="10dp"
-            android:fontFamily="@font/messiri"
-            android:gravity="bottom"
-            android:hint="# Numero de Parqueadero"
-            android:inputType="number"
-            android:padding="10dp"
-            android:singleLine="true"
-            android:textColor="@color/black" />
 
 
     </LinearLayout>

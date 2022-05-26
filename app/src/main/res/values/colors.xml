@@ -10,5 +10,6 @@
     <color name="progress_final">#570465</color>
     <color name="progress_medio">#6E197C</color>
     <color name="celeste">#B832DD</color>
+    <color name="ParqueaderoOcupado">#4EB552</color>
 
 </resources>

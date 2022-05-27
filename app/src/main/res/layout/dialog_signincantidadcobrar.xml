@@ -1,0 +1,61 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:src="@drawable/efectivo"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:scaleType="center"
+        android:background="@color/white"
+        android:contentDescription="@string/app_name" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        ></Space>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="311dp"
+        android:layout_height="257dp"
+        android:background="@drawable/contornodos"
+        android:elevation="10dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.543"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.183">
+
+
+        <TextView
+            android:id="@+id/totalCobrar"
+            android:layout_width="281dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/messiri"
+            android:gravity="bottom"
+            android:hint="#"
+            android:inputType="number"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textColorHint="@color/black"
+            android:textSize="23sp" />
+
+
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        ></Space>
+
+</LinearLayout>

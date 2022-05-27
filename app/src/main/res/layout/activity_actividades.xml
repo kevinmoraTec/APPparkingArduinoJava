@@ -11,7 +11,7 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="311dp"
-        android:layout_height="257dp"
+        android:layout_height="200dp"
         android:background="@drawable/contorno"
         android:elevation="10dp"
         android:gravity="center"
@@ -78,7 +78,7 @@
             android:layout_width="238dp"
             android:layout_height="102dp"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/parking" />
+            app:srcCompat="@drawable/cochesplash" />
 
         <TextView
             android:id="@+id/operacionesParquederoTV"

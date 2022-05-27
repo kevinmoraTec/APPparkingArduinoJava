@@ -42,11 +42,13 @@ public class Actividades extends AppCompatActivity {
     private String[] placasVehiculos;
 
     ImageView parquaderoactivity, iconoInformacion;
+    EditText cobroporHora;
 
     private RequestQueue requestQueue;
     String ip ="192.168.190.237";
 
     String address;
+    String valorPordia;
     private String urlDriveraddActivo="http://"+ip+":4000/clientes";
     //http://"+"ip+"+":4000/clientes";
 
@@ -62,6 +64,7 @@ public class Actividades extends AppCompatActivity {
 
         parquaderoactivity = findViewById(R.id.parquaderoactivity);
         iconoInformacion = findViewById(R.id.iconoInformacion);
+        cobroporHora =findViewById(R.id.cobroPorHora);
 
 
 
@@ -69,6 +72,10 @@ public class Actividades extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
          address = extras.getString(EXTRA_DEVICE_ADDRESS);
+
+         if(valorPordia == null){
+             valorPordia="0.05";
+         }
 
 
 
@@ -80,13 +87,13 @@ public class Actividades extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-
+                Bundle valor = new Bundle();
+                valor.putString("VALOR_POR_DIA",cobroporHora.getText().toString());
                    //onCreateDialogPlacas();
 
                     Intent intent = new Intent(Actividades.this, MainActivity.class);
                     intent.putExtra(EXTRA_DEVICE_ADDRESS, address);
-
+                    intent.putExtras(valor);
                     startActivity(intent);
 
 //                    Toast.makeText(getBaseContext(), "Abrio ACTIVITY" + address, Toast.LENGTH_SHORT).show();
@@ -95,6 +102,15 @@ public class Actividades extends AppCompatActivity {
 
             }
         });
+
+         iconoInformacion.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 colaboradores();
+             }
+         });
+
+
 
 
     }
@@ -140,5 +156,42 @@ public class Actividades extends AppCompatActivity {
 //        Dialog dialog= builder.create();
 //        dialog.show();
 //    }
+public void colaboradores(){
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    // Get the layout inflater
+    LayoutInflater inflater = this.getLayoutInflater();
+    builder.setTitle("Colaboradores");
+    // Inflate and set the layout for the dialog
+    // Pass null as the parent view because its going in the dialog layout
+    //BreakIterator dialog_signin;
+    View dialogView= inflater.inflate(R.layout.integrantes,null);
+    builder.setView(dialogView);
+
+
+    // >>>> here
+
+
+    //builder.setView(inflater.inflate(R.layout.dialog_signin, null));
+
+
+    // Add action buttons
+    builder.setPositiveButton(R.string.signin, new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int id) {
+
+            Toast.makeText(Actividades.this,"Integrantes",Toast.LENGTH_SHORT).show();
+
+
+        }
+
+    })
+            .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.cancel();
+                }
+            });
+    Dialog dialog= builder.create();
+    dialog.show();
+}
 
 }

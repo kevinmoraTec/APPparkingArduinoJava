@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Piano Touch</string>
+    <string name="app_name">Parking App</string>
 
     <string name="placas">Seleccion una placa </string>
     <string name="titlespiner">Selecciona un parqueadero</string>
@@ -9,7 +9,8 @@
     <!-- Titulo de la aleta para ingesar un vehiculo -->
     <string name="tituloAletaIngresarVehiculo"> Ingresar Un Vehiculo </string>
 
-    <!-- Titulo -->
+    <!-- Titulo  ventana emergente donde se muestra el total a pagar-->
+    <string name="tituloAlertaTotalPagar"> COBRAR </string>
 
 
     <string name="title_activity_pago">PagoActivity</string>

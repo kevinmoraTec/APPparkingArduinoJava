@@ -1,0 +1,72 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:scaleType="center"
+        android:background="#F1EEE7"
+        android:contentDescription="@string/app_name" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        ></Space>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="311dp"
+        android:layout_height="257dp"
+        android:background="@drawable/contorno"
+        android:elevation="10dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.543"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.183">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="2dp"
+            android:textColorHint="#939191"
+            app:boxStrokeColor="@color/black"
+            app:counterEnabled="true"
+            app:counterMaxLength="30"
+            app:counterTextColor="@color/white"
+            app:helperText="Requerido"
+            app:helperTextTextColor="@color/white"
+            app:hintTextColor="@color/black">
+
+            <EditText
+                android:id="@+id/placaBuscarDatos"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:background="@drawable/entrada"
+                android:drawableLeft="@drawable/entrada_placa"
+                android:drawablePadding="10dp"
+                android:fontFamily="@font/messiri"
+                android:gravity="bottom"
+                android:hint="Placa"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:textColor="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        ></Space>
+
+</LinearLayout>

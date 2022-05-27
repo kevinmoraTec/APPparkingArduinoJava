@@ -51,6 +51,7 @@ import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
 
+    Bundle datos;
     private Button btnEncenderTodoLuces,btnApagarTodoLuces,btnSitio1,btnSitio2,btnSitio3,btnSitio4,btnSitio5,listar;
     MaterialButton  cobrar;
     private EditText placaVehiculo;
@@ -70,10 +71,17 @@ public class MainActivity extends AppCompatActivity {
     String placaIngresada ="";
     String nombreConductor="";
     String lugarParqueadero="";
-    String ip ="192.168.1.3";
+    String placaIngresadaBusqueda="";
+    String datosObtenidosValorpordia="";
+    String ip ="192.168.1.10";
     private String urlDriveraddActivo="http://"+ip+":4000/clientes";
+    private String urlbuscarPlaca="http://"+ip+":4000/clientesPlaca";
 
     int contadorClick=0;
+    int contadorClick2=0;
+    int contadorClick3=0;
+    int contadorClick4=0;
+    int contadorClick5=0;
 
 
 
@@ -86,6 +94,12 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         setContentView(R.layout.activity_main);
+
+        datos=getIntent().getExtras();
+        datosObtenidosValorpordia=datos.getString("VALOR_POR_DIA");
+
+
+
 
         bluetoothIn = new Handler(){
             @SuppressLint("HandlerLeak")
@@ -112,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         btAdapter =BluetoothAdapter.getDefaultAdapter();
         VerificarEstadoBT();
 
-
+        Toast.makeText(getBaseContext(), "El Dato Enviando es  : "+datosObtenidosValorpordia, Toast.LENGTH_LONG).show();
 
         btnEncenderTodoLuces.setOnClickListener(v -> {
 
@@ -131,12 +145,16 @@ public class MainActivity extends AppCompatActivity {
 
             contadorClick++;
             if (contadorClick == 1){
-                onCreateDialogCobrar();
+                    onCreateDialogCobrar();
                 cambiarColorBotonesParkeadero(btnSitio1,R.color.ParqueaderoOcupado);
+                btnSitio1.setText("OCUPADO");
             }else if (contadorClick == 2){
+                buscarPlaca();
                 Toast.makeText(MainActivity.this,"-> "+contadorClick,Toast.LENGTH_SHORT).show();
                 cambiarColorBotonesParkeadero(btnSitio1,R.color.white);
                 contadorClick =0;
+                MyConexionBT.write("a");
+                btnSitio1.setText("Sitio 1");
             }
 
         });
@@ -144,19 +162,75 @@ public class MainActivity extends AppCompatActivity {
 //
 
         btnSitio2.setOnClickListener(v -> {
-            //MyConexionBT.write("2");
+            //MyConexionBT.write("1");
+
+            contadorClick2++;
+            if (contadorClick2 == 1){
+                onCreateDialogCobrar();
+                cambiarColorBotonesParkeadero(btnSitio2,R.color.ParqueaderoOcupado);
+                btnSitio2.setText("OCUPADO");
+            }else if (contadorClick2 == 2){
+                buscarPlaca();
+                Toast.makeText(MainActivity.this,"-> "+contadorClick2,Toast.LENGTH_SHORT).show();
+                cambiarColorBotonesParkeadero(btnSitio2,R.color.white);
+                contadorClick2 =0;
+                MyConexionBT.write("b");
+                btnSitio2.setText("Sitio 2");
+            }
         });
 
         btnSitio3.setOnClickListener(v -> {
-            //MyConexionBT.write("3");
+            //MyConexionBT.write("1");
+
+            contadorClick3++;
+            if (contadorClick3 == 1){
+                onCreateDialogCobrar();
+                cambiarColorBotonesParkeadero(btnSitio3,R.color.ParqueaderoOcupado);
+                btnSitio3.setText("OCUPADO");
+            }else if (contadorClick3 == 2){
+                buscarPlaca();
+                Toast.makeText(MainActivity.this,"-> "+contadorClick3,Toast.LENGTH_SHORT).show();
+                cambiarColorBotonesParkeadero(btnSitio3,R.color.white);
+                contadorClick3 =0;
+                MyConexionBT.write("c");
+                btnSitio3.setText("Sitio 3");
+            }
         });
 
         btnSitio4.setOnClickListener(v -> {
-            // MyConexionBT.write("4");
+            //MyConexionBT.write("1");
+
+            contadorClick4++;
+            if (contadorClick4 == 1){
+                onCreateDialogCobrar();
+                cambiarColorBotonesParkeadero(btnSitio4,R.color.ParqueaderoOcupado);
+                btnSitio4.setText("OCUPADO");
+            }else if (contadorClick4 == 2){
+                buscarPlaca();
+                Toast.makeText(MainActivity.this,"-> "+contadorClick4,Toast.LENGTH_SHORT).show();
+                cambiarColorBotonesParkeadero(btnSitio4,R.color.white);
+                contadorClick4 =0;
+                MyConexionBT.write("d");
+                btnSitio4.setText("Sitio 4");
+            }
         });
 
         btnSitio5.setOnClickListener(v -> {
-            //MyConexionBT.write("5");
+            //MyConexionBT.write("1");
+
+            contadorClick5++;
+            if (contadorClick5 == 1){
+                onCreateDialogCobrar();
+                cambiarColorBotonesParkeadero(btnSitio5,R.color.ParqueaderoOcupado);
+                btnSitio5.setText("OCUPADO");
+            }else if (contadorClick5 == 2){
+                buscarPlaca();
+                Toast.makeText(MainActivity.this,"-> "+contadorClick5,Toast.LENGTH_SHORT).show();
+                cambiarColorBotonesParkeadero(btnSitio5,R.color.white);
+                contadorClick5 =0;
+                MyConexionBT.write("e");
+                btnSitio5.setText("Sitio 5");
+            }
         });
 
         cobrar.setOnClickListener(new View.OnClickListener() {
@@ -294,7 +368,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    public  void traerSolicitudes(){
+    /*public  void traerSolicitudes(){
         StringRequest request=new StringRequest(
                 Request.Method.GET,
                 url,
@@ -333,7 +407,7 @@ public class MainActivity extends AppCompatActivity {
         }
         );
         Volley.newRequestQueue(this).add(request);
-    }
+    }*/
 
     // Metodo para crear un ventana nueva y asignar los datos del Cliente
     public void onCreateDialogCobrar() {
@@ -383,6 +457,89 @@ public class MainActivity extends AppCompatActivity {
                 });
         Dialog dialog= builder.create();
            dialog.show();
+
+    }
+    public void ventanaTotal_A_Pagar(String cantidad) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        // Get the layout inflater
+        LayoutInflater inflater = this.getLayoutInflater();
+        builder.setTitle(R.string.tituloAlertaTotalPagar);
+        // Inflate and set the layout for the dialog
+        // Pass null as the parent view because its going in the dialog layout
+        //BreakIterator dialog_signin;
+        View dialogView= inflater.inflate(R.layout.dialog_signincantidadcobrar,null);
+        builder.setView(dialogView);
+        TextView totalCobrar = (TextView) dialogView.findViewById(R.id.totalCobrar);
+        totalCobrar.setText(cantidad);
+
+
+        // >>>> here
+
+
+        //builder.setView(inflater.inflate(R.layout.dialog_signin, null));
+
+
+        // Add action buttons
+        builder.setPositiveButton(R.string.signin, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+
+                Toast.makeText(MainActivity.this,"-> "+totalCobrar.getText().toString(),Toast.LENGTH_SHORT).show();
+
+
+            }
+
+        })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        Dialog dialog= builder.create();
+        dialog.show();
+    }
+
+    // Metodo para crear un ventana nueva y buscar una Placa unica
+    public void buscarPlaca() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        // Get the layout inflater
+        LayoutInflater inflater = this.getLayoutInflater();
+        builder.setTitle("BUSCAR PLACA");
+        // Inflate and set the layout for the dialog
+        // Pass null as the parent view because its going in the dialog layout
+        //BreakIterator dialog_signin;
+        View dialogView= inflater.inflate(R.layout.dialog_signinconsultarplaca,null);
+        builder.setView(dialogView);
+        EditText placaBuscardatos = (EditText) dialogView.findViewById(R.id.placaBuscarDatos);
+
+
+        // >>>> here
+
+
+        //builder.setView(inflater.inflate(R.layout.dialog_signin, null));
+
+
+        // Add action buttons
+        builder.setPositiveButton(R.string.signin, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+
+               // Toast.makeText(MainActivity.this,"-> "+placaVehiculoIngresada.getText().toString(),Toast.LENGTH_SHORT).show();
+
+                placaIngresadaBusqueda=placaBuscardatos.getText().toString();
+                enviarDatosConsultaPlaca();
+
+            }
+
+        })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        Dialog dialog= builder.create();
+        dialog.show();
+
     }
 
 
@@ -411,6 +568,38 @@ public class MainActivity extends AppCompatActivity {
                 params.put("placa",placaIngresada);
                 params.put("nombre",nombreConductor);
                 params.put("lugar",lugarParqueadero);
+                return params;
+            }
+        };
+        postRequest.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS * 2, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        Volley.newRequestQueue(this).add(postRequest);
+
+    }
+
+    public void enviarDatosConsultaPlaca(){
+        //Toast.makeText(Actividades.this,"Heyy >>"+placa+" : "+name,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(MainActivity.this,"Heyy >>",Toast.LENGTH_SHORT).show();
+
+
+        StringRequest postRequest = new StringRequest(Request.Method.POST, urlbuscarPlaca, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                ////////////
+                ///////////  Respusta del servidor///////////
+                ////////////
+                Toast.makeText(MainActivity.this,"[]"+response.toString(),Toast.LENGTH_SHORT).show();
+                ventanaTotal_A_Pagar(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //Log.e("Error Volelly",error.getMessage());
+            }
+        }){
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<>();
+                params.put("placa",placaIngresadaBusqueda);
+                params.put("valorCobrar",datosObtenidosValorpordia);
                 return params;
             }
         };
